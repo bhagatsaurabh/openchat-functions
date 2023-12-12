@@ -11,12 +11,12 @@ const auth = admin.auth();
 const msInADay = 1000 * 60 * 60 * 24;
 
 const deleteExpiredAnonymousUsers = async (nextPageToken) => {
-  const today = Date.now();
+  const today = new Date();
   try {
     const page = await auth.listUsers(1000, nextPageToken);
     const expiredAnonymousUsers = page.users
         .filter((user) => user.providerData.length === 0)
-        .filter((user) => Math.floor(today - new Date(user.metadata.creationTime) / msInADay) >= 30)
+        .filter((user) => Math.floor((today - new Date(user.metadata.creationTime)) / msInADay) >= 30)
         .map((user) => user.uid);
 
     await auth.deleteUsers(expiredAnonymousUsers);
