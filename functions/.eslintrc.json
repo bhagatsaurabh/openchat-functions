@@ -1,0 +1,35 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "requireConfigFile": false
+  },
+  "extends": ["eslint:recommended", "google"],
+  "rules": {
+    "no-restricted-globals": ["error", "name", "length"],
+    "prefer-arrow-callback": "error",
+    "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+    "max-len": ["error", { "code": 110 }],
+    "object-curly-spacing": ["error", "always"],
+    "linebreak-style": "off",
+    "prefer-const": "off",
+    "indent": "off",
+    "comma-dangle": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.*"],
+      "env": {
+        "mocha": true
+      },
+      "rules": {}
+    }
+  ],
+  "globals": {}
+}
