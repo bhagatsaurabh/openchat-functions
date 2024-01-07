@@ -6,4 +6,7 @@
 
 <br />
 
-A scheduled firebase function running daily to delete users registered anonymously after 30 days of user creation.
+#### Firebase helper functions for OpenChat
+
+- `delete-anonymous-users` - Scheduled function to delete anonymous users older than 30 days.
+- `delete-message` - Callable HTTP function to validate message deletion after it has been delivered to all group members.
