@@ -25,14 +25,16 @@ const func = async (db, request) => {
     throw new HttpsError("not-found", "Message not found");
   }
   msg = msgSnap.data();
+  msg.timestamp = msg.timestamp.toDate();
 
-  let numMembers = group.members.length;
+  let numMembers = group.members.length - 1;
+  group.members.splice(group.members.indexOf(request.auth.uid), 1);
   group.members.forEach((memberId) => {
     let syncTimestamp = group.sync[memberId];
     if (syncTimestamp) {
       syncTimestamp = syncTimestamp.toDate();
+      if (syncTimestamp >= msg.timestamp) numMembers -= 1;
     }
-    if (syncTimestamp >= msg.timestamp) numMembers -= 1;
   });
 
   if (numMembers <= 0) {
