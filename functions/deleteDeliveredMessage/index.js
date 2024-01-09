@@ -28,11 +28,11 @@ const func = async (db, request) => {
 
   let numMembers = group.members.length;
   group.members.forEach((memberId) => {
-    let seenTimestamp = group.seen[memberId];
-    if (seenTimestamp) {
-      seenTimestamp = seenTimestamp.toDate();
+    let syncTimestamp = group.sync[memberId];
+    if (syncTimestamp) {
+      syncTimestamp = syncTimestamp.toDate();
     }
-    if (seenTimestamp >= msg.timestamp) numMembers -= 1;
+    if (syncTimestamp >= msg.timestamp) numMembers -= 1;
   });
 
   if (numMembers <= 0) {
