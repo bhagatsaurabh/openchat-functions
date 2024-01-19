@@ -10,6 +10,7 @@ setGlobalOptions({ maxInstances: 2 });
 admin.initializeApp();
 const auth = admin.auth();
 const db = admin.firestore();
+const storage = admin.storage().bucket();
 
 export const accountcleanup = onSchedule("every day 00:00", async () => {
   logger.info("Anonymous users cleanup started");
@@ -21,5 +22,5 @@ export const accountcleanup = onSchedule("every day 00:00", async () => {
 
 export const deleteMessage = onCall(
   /* { cors: [/firebase\.com$/, "flutter.com"] }, */
-  async (request) => await deleteDeliveredMessage(db, request)
+  async (request) => await deleteDeliveredMessage(db, storage, request)
 );
