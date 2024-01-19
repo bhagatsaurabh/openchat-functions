@@ -91,6 +91,7 @@ jest.mock("firebase-admin", () => ({
     deleteUsers: mockDeleteUsersStub,
   })),
   firestore: jest.fn(),
+  storage: jest.fn(() => ({ bucket: jest.fn() })),
 }));
 
 describe("openchat-functions", () => {
