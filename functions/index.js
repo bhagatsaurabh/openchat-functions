@@ -24,7 +24,7 @@ export const accountcleanup = onSchedule("every day 00:00", async () => {
 });
 
 export const deleteMessage = onCall(
-  /* { cors: [/firebase\.com$/, "flutter.com"] }, */
+  { cors: [/firebase\.com$/] },
   async (request) => await deleteDeliveredMessage(db, storage, request)
 );
 
