@@ -25,7 +25,7 @@ const func = async (db, event) => {
     });
   } else if (!newData.members.includes(newData.modifiedBy)) {
     sysMsgs.push({
-      by: "system",
+      by: "system:left",
       timestamp: FieldValue.serverTimestamp(),
       expiry: Timestamp.fromDate(new Date(Date.now() + 864000000)),
       text: `##${newData.modifiedBy} left the group`,
@@ -46,7 +46,7 @@ const func = async (db, event) => {
     );
     if (addedMembers.length) {
       sysMsgs.push({
-        by: "system",
+        by: "system:added",
         timestamp: FieldValue.serverTimestamp(),
         expiry: Timestamp.fromDate(new Date(Date.now() + 864000000)),
         text: `##${newData.modifiedBy} added {${addedMembers
@@ -57,7 +57,7 @@ const func = async (db, event) => {
     }
     if (removedMembers.length) {
       sysMsgs.push({
-        by: "system",
+        by: "system:removed",
         timestamp: FieldValue.serverTimestamp(),
         expiry: Timestamp.fromDate(new Date(Date.now() + 864000000)),
         text: `##${newData.modifiedBy} removed {${removedMembers
@@ -68,7 +68,7 @@ const func = async (db, event) => {
     }
     if (addedAdmins.length) {
       sysMsgs.push({
-        by: "system",
+        by: "system:added",
         timestamp: FieldValue.serverTimestamp(),
         expiry: Timestamp.fromDate(new Date(Date.now() + 864000000)),
         text: `##${newData.modifiedBy} made {${addedAdmins
@@ -79,7 +79,7 @@ const func = async (db, event) => {
     }
     if (removedAdmins.length) {
       sysMsgs.push({
-        by: "system",
+        by: "system:removed",
         timestamp: FieldValue.serverTimestamp(),
         expiry: Timestamp.fromDate(new Date(Date.now() + 864000000)),
         text: `##${newData.modifiedBy} revoked adminship from {${removedAdmins
