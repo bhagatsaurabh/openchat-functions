@@ -10,3 +10,4 @@
 
 - `delete-anonymous-users` - Scheduled function to delete anonymous users older than 30 days.
 - `delete-message` - Callable HTTP function to validate message deletion after it has been delivered to all group members.
+- `put-system-messages` - Firestore triggered function to add system messages in response to group updation.
